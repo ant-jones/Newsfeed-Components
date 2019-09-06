@@ -110,37 +110,43 @@ const data = [
   })
 
   function newsFeed(title, date, firstParagraph, secondParagraph, thirdParagraph){
-    let articlesTitle = document.createElement("h2")
-    let articlesDate = document.createElement("p");
-    let articlesParagraph1 = document.createElement("p");
-    let articlesParagraph2 = document.createElement("p");
-    let articlesParagraph3 = document.createElement("p");
-    let expandButton = document.createElement("span");
+    let article = document.createElement('div');
+    let articlesTitle = document.createElement('h2');
+    let articlesDate = document.createElement('p');
+    let articlesParagraph1 = document.createElement('p');
+    let articlesParagraph2 = document.createElement('p');
+    let articlesParagraph3 = document.createElement('p');
+    let expandButton = document.createElement('span');
 
-    articlesTitle.appendChild(date);
-    articlesTitle.appendChild(firstParagraph);
-    articlesTitle.appendChild(secondParagraph);
-    articlesTitle.appendChild(thirdParagraph);
+    article.appendChild(articlesTitle);
+    article.appendChild(articlesDate);
+    article.appendChild(articlesParagraph1);
+    article.appendChild(articlesParagraph2);
+    article.appendChild(articlesParagraph3);
+    article.appendChild(expandButton);
     
     //set classes
-    date.classList.add("date");
+    article.classList.add("article")
+    articlesDate.classList.add("date");
     expandButton.classList.add("expandButton");
     
+    
     //set text
-    title.textContent = "title";
-    date.textContent = "date";
-    articlesParagraph1.textContent = "firstParagraph";
-    articlesParagraph2.textContent = "secondParagraph";
-    articlesParagraph3.textContent = "thirdParagraph";
+    articlesTitle.textContent = title;
+    articlesDate.textContent = date;
+    articlesParagraph1.textContent = firstParagraph;
+    articlesParagraph2.textContent = secondParagraph;
+    articlesParagraph3.textContent = thirdParagraph;
+    expandButton.textContent = "Article-Open";
 
   
   /*Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.*/
-   expandButton.addEventListener("click", e =>{
-     console.log("button clicked")
-   })
+   expandButton.addEventListener('click', event => {
+    article.classList.toggle("article-open");
+   });
 
   //Step 3: return the entire component.
-  return articlesTitle;
+  return article;
   }
   
   /*Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
